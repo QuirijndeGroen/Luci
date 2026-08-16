@@ -2,8 +2,8 @@ import QtQuick
 import Qt.labs.folderlistmodel
 import QtQuick.Controls 2.15
 
-import "../widgets"
-import "../managers"
+import "../components"
+import "../core"
 import "../services"
 import "../styles"
 
@@ -242,7 +242,7 @@ FocusScope {
             break
 
         case Qt.Key_Escape:
-            IslandManager.reset()
+            IslandController.reset()
             event.accepted = true
             break
 

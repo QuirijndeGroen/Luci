@@ -42,7 +42,7 @@ Rectangle {
 
         size: 18
 
-        color: Theme.textPrimary
+        color: Theme.background
     }
 
     Text {

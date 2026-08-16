@@ -1,12 +1,20 @@
 import QtQuick
-import "../widgets"
+
+import "../components"
 import "../services"
-import "../managers"
+import "../core"
 
 FocusScope {
     id: root
 
     property int selectedIndex: 0
+
+    implicitWidth: 520
+    implicitHeight: 75
+
+    Component.onCompleted: {
+        forceActiveFocus()
+    }
 
     Keys.onPressed: function(event) {
 
@@ -57,7 +65,7 @@ FocusScope {
 
         case Qt.Key_Escape:
 
-            IslandManager.reset()
+            IslandController.reset()
 
             event.accepted = true
             break
@@ -73,7 +81,6 @@ FocusScope {
 
             icon: "󰌾"
             title: "Lock"
-
             action: PowerService.lock
         }
 
@@ -82,7 +89,6 @@ FocusScope {
 
             icon: "󰤄"
             title: "Sleep"
-
             action: PowerService.suspend
         }
 
@@ -91,7 +97,6 @@ FocusScope {
 
             icon: "󰍃"
             title: "Logout"
-
             action: PowerService.logout
         }
 
@@ -100,7 +105,6 @@ FocusScope {
 
             icon: "󰑐"
             title: "Reboot"
-
             action: PowerService.reboot
         }
 
@@ -109,7 +113,6 @@ FocusScope {
 
             icon: ""
             title: "Power"
-
             action: PowerService.poweroff
         }
     }

@@ -168,9 +168,6 @@ Singleton {
         applyProcess.running = true
     }
 
-    // =========================================================
-    // Reload
-    // =========================================================
     function reload() {
 
         currentModel = themeOnly

@@ -1,7 +1,7 @@
 import QtQuick
 
 import "../styles"
-import "../managers"
+import "../core"
 
 Item {
     id: root
@@ -34,16 +34,7 @@ Item {
 
             event.accepted = true
 
-            IslandManager.ignoreNextIslandTap = false
-
-            IslandManager.returnToExpanded =
-                IslandManager.islandPinned
-
-            IslandManager.islandPinned = false
-
-            IslandManager.setMode(
-                IslandManager.mediaControlsMode
-            )
+            IslandController.openMediaFromLeftSection()
         }
     }
 }

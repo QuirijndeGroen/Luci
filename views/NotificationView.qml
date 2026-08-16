@@ -110,7 +110,6 @@ Item {
                         //
 
                         Rectangle {
-
                             Layout.alignment: Qt.AlignTop
 
                             width: 64
@@ -126,24 +125,24 @@ Item {
                             border.color: Theme.borderSubtle
 
                             Image {
+                                id: iconImage
 
                                 anchors.fill: parent
 
-                                visible: model.image !== ""
-
-                                source: model.image
+                                source: model.icon
 
                                 asynchronous: true
                                 cache: true
 
-                                fillMode: Image.PreserveAspectCrop
+                                fillMode: Image.PreserveAspectFit
+
+                                visible: status === Image.Ready
                             }
 
                             Text {
-
                                 anchors.centerIn: parent
 
-                                visible: model.image === ""
+                                visible: iconImage.status !== Image.Ready
 
                                 text: "󰂚"
 
@@ -153,7 +152,7 @@ Item {
                                 color: Theme.icon
                             }
                         }
-
+                        
                         //
                         // Right Side
                         //

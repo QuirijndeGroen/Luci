@@ -2,21 +2,24 @@ import QtQuick
 import Quickshell
 import Quickshell.Hyprland
 
-import "../components"
-import "../managers"
+import "../island"
+import "../core"
+import "../services"
 
 PanelWindow {
     id: root
 
+    visible: ThemeService.ready
+
     HyprlandFocusGrab {
         id: focusGrab
 
-        active: IslandManager.modal
+        active: ThemeService.ready && IslandState.modal
 
         windows: [ root ]
 
         onCleared: {
-            IslandManager.reset()
+            IslandController.reset()
         }
     }
 
@@ -28,12 +31,13 @@ PanelWindow {
         right: true
     }
 
-    exclusiveZone: 33
+    exclusiveZone: ThemeService.ready ? 33 : 0
+
     implicitHeight: capsule.implicitHeight + 20
 
     color: "transparent"
 
-    MainCapsule {
+    Island {
         id: capsule
 
         anchors.horizontalCenter: parent.horizontalCenter
@@ -43,6 +47,7 @@ PanelWindow {
 
     Region {
         id: capsuleMask
+
         item: capsule
     }
 

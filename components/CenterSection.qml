@@ -1,7 +1,7 @@
 import QtQuick
 import "../views"
 import "../styles"
-import "../widgets"
+import "../components"
 import "../services"
 
 Item {

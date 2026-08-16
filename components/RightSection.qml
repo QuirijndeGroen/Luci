@@ -1,8 +1,8 @@
 import QtQuick
 
 import "../styles"
-import "../status"
-import "../managers"
+import "../core"
+import "../island"
 import "../services"
 
 Item {
@@ -51,18 +51,11 @@ Item {
                     event.accepted = true
 
                     if (
-                        IslandManager.mode === IslandManager.controlCenterMode
+                        IslandState.mode === IslandState.controlCenterMode
                     )
                         return
 
-                    IslandManager.returnToExpanded =
-                        IslandManager.islandPinned
-
-                    IslandManager.islandPinned = false
-
-                    IslandManager.setMode(
-                        IslandManager.controlCenterMode
-                    )
+                    IslandController.openControlCenterFromRightSection()
                 }
             }
 

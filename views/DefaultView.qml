@@ -1,11 +1,11 @@
 import QtQuick
 import "../views"
 import "../services"
-import "../widgets"
+import "../components"
 
 Item {
-    implicitWidth: row.implicitWidth
-    implicitHeight: row.implicitHeight
+    implicitWidth: 160
+    implicitHeight: 33
 
     Row {
         id: row

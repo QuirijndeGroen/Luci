@@ -2,14 +2,16 @@ import QtQuick
 import QtQuick.Layouts
 
 import "../styles"
-import "../widgets"
-import "../managers"
+import "../components"
+import "../core"
 import "../views"
 import "../services"
 
 Item {
     id: root
 
+    clip: true
+    
     property Item wifiSvc
 
     implicitWidth: 520
@@ -106,7 +108,6 @@ Item {
             }
 
             ControlCard {
-
                 iconSource: MediaService.icon
 
                 title: "Media"
@@ -116,17 +117,7 @@ Item {
                 active: MediaService.hasPlayer
 
                 onClicked: {
-
-                    IslandManager.ignoreNextIslandTap = true
-
-                    IslandManager.returnToExpanded =
-                        IslandManager.islandPinned
-
-                    IslandManager.islandPinned = true
-
-                    IslandManager.setMode(
-                        IslandManager.mediaControlsMode
-                    )
+                    IslandController.openMediaControls()
                 }
             }
         }

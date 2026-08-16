@@ -1,34 +1,50 @@
 import QtQuick
 import QtQuick.Layouts
+
 import "../styles"
-import "../managers"
+import "../core"
 
 Item {
     id: root
 
     property bool expandedMode: false
 
-    implicitWidth: {
+    property int maximum: 100
 
+    implicitWidth: {
         switch (StatusManager.mode) {
 
         case "workspace":
-            return 120
+            return Theme.statusWorkspaceWidth
 
         case "keyboard":
-            return 90
+            return Theme.statusKeyboardWidth
+
+        case "volume":
+            return Theme.statusVolumeWidth
+
+        case "brightness":
+            return Theme.statusBrightnessWidth
 
         default:
-            return 280
+            return Theme.statusDefaultWidth
         }
     }
 
-    implicitHeight: 26
-
-    property int maximum: 100
+    implicitHeight: 33
 
     RowLayout {
+        id: rowLayout
+
         anchors.fill: parent
+
+        anchors.leftMargin:
+            StatusManager.mode === "workspace" ||
+            StatusManager.mode === "keyboard"
+                ? 35
+                : 14
+
+        anchors.rightMargin: 14
 
         spacing: 10
 
@@ -60,6 +76,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
 
                 height: parent.height
+
                 radius: height / 2
 
                 width: Math.max(
@@ -113,8 +130,8 @@ Item {
                 StatusManager.mode === "brightness"
 
             text: StatusManager.value >= 0
-                  ? StatusManager.value + "%"
-                  : "Muted"
+                ? StatusManager.value + "%"
+                : "Muted"
 
             color: Theme.textPrimary
             font.pixelSize: 12

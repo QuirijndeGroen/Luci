@@ -5,7 +5,6 @@ import Quickshell
 import Quickshell.Io
 
 Singleton {
-
     id: root
 
     property bool enabled: false
@@ -20,14 +19,15 @@ Singleton {
                 ? "On"
                 : "Off"
 
-    property url icon: !enabled
-        ? Qt.resolvedUrl("../assets/icons/bluetooth-off.svg")
-        : connected
-            ? Qt.resolvedUrl("../assets/icons/bluetooth-connected.svg")
-            : Qt.resolvedUrl("../assets/icons/bluetooth.svg")
+    property url icon:
+        !enabled
+            ? Qt.resolvedUrl("../assets/icons/bluetooth-off.svg")
+            : connected
+                ? Qt.resolvedUrl("../assets/icons/bluetooth-connected.svg")
+                : Qt.resolvedUrl("../assets/icons/bluetooth.svg")
 
     Process {
-        id: bluetoothState
+        id: stateProcess
 
         command: [
             "bluetoothctl",
@@ -43,10 +43,14 @@ Singleton {
                     output.indexOf("Powered: yes") !== -1
             }
         }
+
+        onExited: {
+            deviceProcess.running = true
+        }
     }
 
     Process {
-        id: bluetoothDevices
+        id: deviceProcess
 
         command: [
             "bluetoothctl",
@@ -64,73 +68,63 @@ Singleton {
                     root.connected = false
                     root.deviceName = ""
 
-                } else {
-
-                    root.connected = true
-
-                    let parts = line.split(" ")
-
-                    root.deviceName =
-                        parts.slice(2).join(" ")
+                    return
                 }
+
+                let parts = line.split(" ")
+
+                root.connected = true
+
+                root.deviceName =
+                    parts.slice(2).join(" ")
             }
         }
     }
 
     Process {
-        id: bluetoothToggle
+        id: toggleProcess
 
         onExited: {
-            root.update()
+            update()
         }
     }
 
-    Timer {
+    function toggle() {
 
+        toggleProcess.running = false
+
+        toggleProcess.command = [
+            "bluetoothctl",
+            "power",
+            enabled ? "off" : "on"
+        ]
+
+        toggleProcess.running = true
+    }
+
+    function update() {
+
+        if (
+            stateProcess.running ||
+            deviceProcess.running
+        )
+            return
+
+        stateProcess.running = true
+    }
+
+    Timer {
         interval: 5000
 
         running: true
         repeat: true
 
-        onTriggered: update()
-    }
-
-    function update() {
-
-        bluetoothState.running = false
-        bluetoothDevices.running = false
-
-        bluetoothState.running = true
-        bluetoothDevices.running = true
-    }
-
-    function toggle() {
-
-        bluetoothToggle.running = false
-
-        if (enabled) {
-
-            enabled = false
-
-            bluetoothToggle.command = [
-                "bluetoothctl",
-                "power",
-                "off"
-            ]
-
-        } else {
-
-            enabled = true
-
-            bluetoothToggle.command = [
-                "bluetoothctl",
-                "power",
-                "on"
-            ]
+        onTriggered: {
+            root.update()
         }
-
-        bluetoothToggle.running = true
     }
 
-    Component.onCompleted: update()
+    Component.onCompleted: {
+        update()
+    }
 }

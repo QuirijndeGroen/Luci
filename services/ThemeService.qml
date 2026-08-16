@@ -271,6 +271,8 @@ Singleton {
         ]
 
         process.running = true
+
+        ready = true
     }
 
     function applyTheme(themeObject) {
@@ -362,6 +364,7 @@ Singleton {
     }
 
     property bool initialized: false
+    property bool ready: false
 
     function initialize() {
 
@@ -370,5 +373,9 @@ Singleton {
 
         initialized = true
         themeReader.running = true
+    }
+
+    Component.onCompleted: {
+        initialize()
     }
 }

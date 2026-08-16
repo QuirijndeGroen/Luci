@@ -2,7 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import "../services"
-import "../managers"
+import "../core"
 
 Item {
     id: root

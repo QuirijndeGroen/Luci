@@ -1,28 +1,28 @@
 import Quickshell
 import Quickshell.Io
-import "../managers"
+
+import "../core"
 
 IpcHandler {
     target: "luci"
 
     function openPowerMenu() {
-        IslandManager.setMode(IslandManager.powerMenuMode)
+        IslandController.openPowerMenu()
     }
 
     function openExpandedHome() {
-        IslandManager.setMode(IslandManager.expandedMode)
+        IslandController.openExpanded()
     }
 
     function reset() {
-        IslandManager.reset()
+        IslandController.reset()
     }
 
     function openWallpaperSelector() {
-        IslandManager.setMode(IslandManager.wallpaperSelectorMode)
+        IslandController.openWallpaperSelector()
     }
 
     function openThemeSelector() {
-        IslandManager.setMode(IslandManager.themeSelectorMode)
+        IslandController.openThemeSelector()
     }
-
 }

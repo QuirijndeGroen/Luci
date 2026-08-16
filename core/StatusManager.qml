@@ -38,7 +38,6 @@ Singleton {
         repeat: false
 
         onTriggered: {
-            console.log("HIDE")
             root.visible = false
         }
     }

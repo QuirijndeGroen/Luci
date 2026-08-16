@@ -3,7 +3,6 @@ import "windows"
 import "services"
 
 ShellRoot {
-
     StatusWatcher {}
     WorkspaceService {}
     KeyboardService {}
@@ -11,5 +10,4 @@ ShellRoot {
     IslandIPC {}
 
     IslandWindow {}
-    
 }

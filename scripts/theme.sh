@@ -115,7 +115,6 @@ link_if_exists \
     "$HOME/.config/hypr/current-theme/theme.lua"
 
 echo
-echo "Applied theme: $THEME"
 
 echo "$THEME" > "$HOME/.config/quickshell/.current_theme"
 
