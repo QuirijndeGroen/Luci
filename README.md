@@ -8,17 +8,17 @@ The goal is simplicity rather than feature overload.
 
 ## Features
 
-- 🎨 Dynamic theme switching
-- 🖼️ Theme-aware wallpaper selector
-- 🎵 Rich media controls with waveform progress
-- 🔊 Volume notifications
-- ☀️ Brightness notifications
-- 🔋 Battery status
-- 📶 Wi-Fi status
-- 📊 Real-time CAVA visualizer
-- ⚡ Power menu
-- ⌨️ Vim-inspired keyboard navigation
-- 🧩 Modular architecture
+-  Dynamic theme switching
+-  Theme-aware wallpaper selector
+-  Rich media controls with waveform progress
+-  Volume notifications
+-  Brightness notifications
+-  Battery status
+-  Wi-Fi status
+-  Real-time CAVA visualizer
+-  Power menu
+-  Vim-inspired keyboard navigation
+
 
 
 ## Requirements
