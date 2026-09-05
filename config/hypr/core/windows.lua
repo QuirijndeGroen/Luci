@@ -56,3 +56,8 @@ hl.window_rule({
   match = { class = "codium" },
   opacity = "0.80",
 })
+
+hl.window_rule({
+  match = { class = "Spotify" },
+  opacity = "0.80",
+})
