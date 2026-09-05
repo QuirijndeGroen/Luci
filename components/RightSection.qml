@@ -8,6 +8,7 @@ import "../services"
 Item {
 
     property Item batteryService
+    property Item profilesService
 
     implicitWidth: row.implicitWidth
     implicitHeight: row.implicitHeight
@@ -67,6 +68,17 @@ Item {
                 spacing: 14
 
                 Text {
+                    text: profilesService 
+                          ? profilesService.icon 
+                          : ""
+
+                    color: Theme.icon
+
+                    font.family: "JetBrainsMono Nerd Font"
+                    font.pixelSize: 16
+                }
+
+                Text {
                     text: WifiService.icon
                     color: Theme.icon
 
@@ -75,9 +87,7 @@ Item {
                 }
 
                 Text {
-                    text: batteryService
-                          ? batteryService.icon
-                          : ""
+                    text: BatteryService.icon
 
                     color: Theme.icon
 

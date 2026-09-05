@@ -7,9 +7,8 @@ Item {
     implicitWidth: 520
     implicitHeight: 75
 
-
-    BatteryService {
-        id: batteryService
+    ProfilesService {
+        id: profilesService
     }
 
     Row {
@@ -43,7 +42,7 @@ Item {
 
             anchors.verticalCenter: parent.verticalCenter
 
-            batteryService: batteryService
+            profilesService: profilesService
         }
     }
 }

@@ -78,44 +78,28 @@ hl.bind(mainMod .. " + mouse:273",
     hl.dsp.window.resize(),
     { mouse = true })
 
-hl.bind("XF86AudioRaiseVolume",
-    hl.dsp.exec_cmd("~/.config/quickshell/scripts/volume.sh up"),
-    { locked = true, repeating = true })
-
-hl.bind("XF86AudioLowerVolume",
-    hl.dsp.exec_cmd("~/.config/quickshell/scripts/volume.sh down"),
-    { locked = true, repeating = true })
-
-hl.bind("XF86AudioMute",
-    hl.dsp.exec_cmd("~/.config/quickshell/scripts/volume.sh mute"),
-    { locked = true })
-
-hl.bind("XF86MonBrightnessUp",
-    hl.dsp.exec_cmd("~/.config/quickshell/scripts/brightness.sh +5%"),
-    { locked = true, repeating = true })
-
-hl.bind("XF86MonBrightnessDown",
-    hl.dsp.exec_cmd("~/.config/quickshell/scripts/brightness.sh 5%-"),
-    { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("~/.config/quickshell/scripts/volume.sh up"), { locked = true, repeating = true })  -- FN + F1
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("~/.config/quickshell/scripts/volume.sh down"), { locked = true, repeating = true })  -- FN + F2
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("~/.config/quickshell/scripts/volume.sh mute"), { locked = true })  -- FN + F3
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))  -- FN + F4
 
 hl.bind("XF86Launch1", hl.dsp.exec_cmd("~/.config/hypr/scripts/power_profiles_cycle.sh"), { locked = true, repeating = false }) -- FN + F5
 hl.bind("XF86ScreenSaver", function()
     hl.timer(function()
         hl.dispatch(hl.dsp.dpms({ action = "disable", monitor = "eDP-1" }))
     end, { timeout = 500, type = "oneshot" })
-end, { locked = true, repeating = false })                                            -- FN + F6
+end, { locked = true, repeating = false })  -- FN + F6   
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("~/.config/quickshell/scripts/brightness.sh +5%"), { locked = true, repeating = true })  -- FN + F7
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("~/.config/quickshell/scripts/brightness.sh 5%-"), { locked = true, repeating = true })  -- FN + F8
 
 hl.bind("XF86Display", hl.dsp.exec_cmd("~/.config/hypr/scripts/monitor.sh")) -- FN + F9
-
 local touchpadEnabled = false
 hl.bind("XF86TouchpadToggle", function()
     touchpadEnabled = not touchpadEnabled
-    hl.config({})                                                                     -- no-op, just for clarity
     hl.device({ name = "elan1203:00-04f3:307a-touchpad", enabled = touchpadEnabled }) -- FN + F10
 end)
-
-hl.bind("XF86Sleep", hl.dsp.exec_cmd("systemctl suspend"))                  -- FN + F11
-hl.bind("XF86WLAN", hl.dsp.exec_cmd("nmcli radio wifi toggle"))             -- FN + F12
+hl.bind("XF86Sleep", hl.dsp.exec_cmd("systemctl suspend"))  -- FN + F11
+hl.bind("XF86WLAN", hl.dsp.exec_cmd("nmcli radio wifi toggle"))  -- FN + F12
 
 hl.config({
     binds = {
