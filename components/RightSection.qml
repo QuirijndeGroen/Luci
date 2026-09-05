@@ -77,7 +77,7 @@ Item {
                 Text {
                     text: batteryService
                           ? batteryService.icon
-                          : "󰁺"
+                          : ""
 
                     color: Theme.icon
 

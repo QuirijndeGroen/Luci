@@ -1,99 +1,43 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import Quickshell.Services.UPower
 
 Item {
     id: root
 
-    property int percentage: 0
-    property bool charging: false
-    property bool pluggedIn: false
-    property string status: ""
-    property string icon: "󰁺"
+    property var battery: UPower.displayDevice
+    property bool charging: battery && battery.ready && battery.state === UPowerDeviceState.PendingCharge || battery.state === UPowerDeviceState.Charging || battery.state === UPowerDeviceState.FullyCharged
+    readonly property int level: Math.round(battery.percentage * 100)
 
-    Process {
-        id: batteryReader
+    readonly property string icon: {
+        if (charging) {
 
-        running: true
+            return "󰂄"
 
-        command: [
-            "bash",
-            "-c",
-            "cat /sys/class/power_supply/BAT1/capacity && cat /sys/class/power_supply/BAT1/status && cat /sys/class/power_supply/ADP1/online"
-        ]
+        } if (level >= 95) {
 
-        stdout: StdioCollector {
+            return "󰁹"
 
-            onStreamFinished: {
+        } else if (level >= 75) {
 
-                let lines = text.trim().split("\n")
+            return "󰂀"
 
-                if (lines.length < 3)
-                    return
+        } else if (level >= 50) {
 
-                root.percentage = Number(lines[0])
+            return "󰁿"
 
-                root.status = lines[1]
+        } else if (level >= 25) {
 
-                root.pluggedIn = lines[2] === "1"
+            return "󰁾"
 
-                root.charging =
-                    root.status === "Charging"
+        } else if (level >= 10) {
 
-                updateIcon()
-            }
-        }
-    }
-
-    Timer {
-
-        interval: 5000
-
-        running: true
-
-        repeat: true
-
-
-        onTriggered: {
-
-            batteryReader.running = false
-            batteryReader.running = true
-
-        }
-    }
-
-    function updateIcon() {
-
-        if (pluggedIn) {
-
-            icon = "󰂄"
-
-            return
-        }
-
-        if (percentage >= 95) {
-
-            icon = "󰁹"
-
-        } else if (percentage >= 75) {
-
-            icon = "󰂀"
-
-        } else if (percentage >= 50) {
-
-            icon = "󰁿"
-
-        } else if (percentage >= 25) {
-
-            icon = "󰁾"
-
-        } else if (percentage >= 10) {
-
-            icon = "󰁼"
+            return "󰁼"
 
         } else {
 
-            icon = "󰁺"
+            return "󰁺"
         }
     }
 }
