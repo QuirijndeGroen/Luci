@@ -112,7 +112,7 @@ fi
 
 link_if_exists \
     "$THEME_DIR/HyprTheme.lua" \
-    "$HOME/.config/hypr/current-theme/theme.lua"
+    "$HOME/.config/quickshell/config/hypr/current-theme/theme.lua"
 
 echo
 

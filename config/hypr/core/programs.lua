@@ -5,7 +5,6 @@
 local M = {}
 
 M.terminal = "kitty"
-M.fileManager = "kitty yazi"
-M.menu = "rofi -show drun"
+M.fileManager = "nemo"
 
 return M

@@ -2,7 +2,7 @@
 ---- LOOK AND FEEL ----
 -----------------------
 
-local theme = require("current-theme.theme")
+local theme = require(os.getenv("HOME") .. "/.config/quickshell/config/hypr/current-theme/theme")
 
 hl.config({
     general = {
@@ -72,4 +72,3 @@ hl.animation({ leaf = "workspaces",    enabled = true,  speed = 1.94, bezier = "
 hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
-

@@ -2,15 +2,19 @@
 ---- KEYBINDINGS ----
 ---------------------
 
-local programs = require("core.programs")
+local programs = require(os.getenv("HOME") .. "/.config/quickshell/config/hypr/core/programs.lua")
 
 local mainMod = "SUPER"
 
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(programs.terminal))
-hl.bind(mainMod .. " + C", hl.dsp.window.close())
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("/home/quirijn/.config/quickshell/reload.sh"))
+
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(programs.terminal))
+hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.fileManager))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(programs.menu))
+
+hl.bind(mainMod .. " + Space",
+    hl.dsp.exec_cmd("qs ipc call luci openApplicationLauncher"))
 
 hl.bind(mainMod .. " + P",
     hl.dsp.exec_cmd("qs ipc call luci openPowerMenu"))
@@ -26,12 +30,6 @@ hl.bind(mainMod .. " + T",
 
 hl.bind(mainMod .. " + B",
     hl.dsp.exec_cmd("mkdir /tmp/zen_lock 2>/dev/null && (zen-browser; rmdir /tmp/zen_lock)"))
-
-hl.bind(mainMod .. " + period",
-    hl.dsp.exec_cmd("rofi -show emoji"))
-
-hl.bind(mainMod .. " + H",
-    hl.dsp.exec_cmd("cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"))
 
 hl.bind(mainMod .. " + S",
     hl.dsp.exec_cmd("hyprshot -m window"))
@@ -97,21 +95,24 @@ hl.bind("XF86MonBrightnessDown",
     hl.dsp.exec_cmd("~/.config/quickshell/scripts/brightness.sh 5%-"),
     { locked = true, repeating = true })
 
-hl.bind("XF86AudioNext",
-    hl.dsp.exec_cmd("playerctl next"),
-    { locked = true })
+hl.bind("XF86Launch1", hl.dsp.exec_cmd("~/.config/hypr/scripts/power_profiles_cycle.sh"), { locked = true, repeating = false }) -- FN + F5
+hl.bind("XF86ScreenSaver", function()
+    hl.timer(function()
+        hl.dispatch(hl.dsp.dpms({ action = "disable", monitor = "eDP-1" }))
+    end, { timeout = 500, type = "oneshot" })
+end, { locked = true, repeating = false })                                            -- FN + F6
 
-hl.bind("XF86AudioPause",
-    hl.dsp.exec_cmd("playerctl play-pause"),
-    { locked = true })
+hl.bind("XF86Display", hl.dsp.exec_cmd("~/.config/hypr/scripts/monitor.sh")) -- FN + F9
 
-hl.bind("XF86AudioPlay",
-    hl.dsp.exec_cmd("playerctl play-pause"),
-    { locked = true })
+local touchpadEnabled = false
+hl.bind("XF86TouchpadToggle", function()
+    touchpadEnabled = not touchpadEnabled
+    hl.config({})                                                                     -- no-op, just for clarity
+    hl.device({ name = "elan1203:00-04f3:307a-touchpad", enabled = touchpadEnabled }) -- FN + F10
+end)
 
-hl.bind("XF86AudioPrev",
-    hl.dsp.exec_cmd("playerctl previous"),
-    { locked = true })
+hl.bind("XF86Sleep", hl.dsp.exec_cmd("systemctl suspend"))                  -- FN + F11
+hl.bind("XF86WLAN", hl.dsp.exec_cmd("nmcli radio wifi toggle"))             -- FN + F12
 
 hl.config({
     binds = {

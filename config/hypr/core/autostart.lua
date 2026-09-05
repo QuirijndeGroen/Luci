@@ -5,7 +5,6 @@
 hl.on("hyprland.start", function()
     hl.exec_cmd("qs -c ~/.config/quickshell")
 
-    -- hl.exec_cmd("waybar")
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("hypridle")
 
@@ -20,4 +19,6 @@ hl.on("hyprland.start", function()
     )
 
     hl.exec_cmd("/usr/lib/xdg-desktop-portal -r -v")
+
+    hl.device({ name = "elan1203:00-04f3:307a-touchpad", enabled = false })
 end)

@@ -52,3 +52,7 @@ hl.config({
     },
 })
 
+hl.window_rule({
+  match = { class = "codium" },
+  opacity = "0.80",
+})
