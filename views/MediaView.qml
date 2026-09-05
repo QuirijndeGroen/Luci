@@ -5,12 +5,19 @@ import Qt5Compat.GraphicalEffects
 import "../components"
 import "../services"
 import "../styles"
+import "../core"
 
-Item {
+FocusScope {
     id: root
 
     implicitWidth: 520
     implicitHeight: 145
+
+    Component.onCompleted: {
+        forceActiveFocus()
+    }
+
+    focus: true
 
     ColumnLayout {
 
@@ -136,5 +143,20 @@ Item {
         WaveformProgress {
             Layout.fillWidth: true
         }
+    }
+
+    Keys.onEscapePressed: IslandController.reset() // Close with Esc    
+
+    Keys.onPressed: event => {
+        if (event.key === Qt.Key_Down || event.key === Qt.Key_Space) {
+            event.accepted = true;
+            MediaService.togglePlayback();
+        } else if (event.key === Qt.Key_Right) {
+            event.accepted = true;
+            MediaService.nextTrack();
+        } else if (event.key === Qt.Key_Left) {
+            event.accepted = true;
+            MediaService.previousTrack();
+        } 
     }
 }

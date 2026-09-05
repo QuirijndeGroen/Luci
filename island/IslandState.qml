@@ -31,9 +31,5 @@ QtObject {
     // DERIVED STATE
     // =========================================================
 
-    readonly property bool modal:
-        mode === powerMenuMode ||
-        mode === themeSelectorMode ||
-        mode === wallpaperSelectorMode ||
-        mode === applicationLauncherMode
+    property bool modal: false
 }

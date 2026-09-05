@@ -41,14 +41,17 @@ FocusScope {
 
             case 0:
                 PowerService.lock()
+                IslandController.reset()
                 break
 
             case 1:
                 PowerService.suspend()
+                IslandController.reset()
                 break
 
             case 2:
                 PowerService.logout()
+                IslandController.reset()
                 break
 
             case 3:

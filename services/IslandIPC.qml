@@ -29,4 +29,8 @@ IpcHandler {
     function openApplicationLauncher() {
         IslandController.openApplicationLauncher()
     }
+
+    function openMediaControls() {
+        IslandController.openMediaControls()
+    }
 }

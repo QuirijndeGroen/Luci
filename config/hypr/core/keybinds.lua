@@ -28,6 +28,9 @@ hl.bind(mainMod .. " + V",
 hl.bind(mainMod .. " + T",
     hl.dsp.exec_cmd("qs ipc call luci openThemeSelector"))
 
+hl.bind(mainMod .. " + M",
+    hl.dsp.exec_cmd("qs ipc call luci openMediaControls"))
+
 hl.bind(mainMod .. " + B",
     hl.dsp.exec_cmd("mkdir /tmp/zen_lock 2>/dev/null && (zen-browser; rmdir /tmp/zen_lock)"))
 

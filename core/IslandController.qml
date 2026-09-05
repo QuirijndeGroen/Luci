@@ -13,45 +13,49 @@ QtObject {
     // =========================================================
 
     function openDefault() {
+        IslandState.modal = false
         IslandState.mode =
             IslandState.defaultMode
     }
 
     function openExpanded() {
+        IslandState.modal = false
         IslandState.mode =
             IslandState.expandedMode
     }
 
     function openPowerMenu() {
+        IslandState.modal = true
         IslandState.mode =
             IslandState.powerMenuMode
     }
 
     function openControlCenter() {
+        IslandState.modal = false
         IslandState.mode =
             IslandState.controlCenterMode
     }
 
     function openThemeSelector() {
+        IslandState.modal = true
         IslandState.mode =
             IslandState.themeSelectorMode
     }
 
     function openWallpaperSelector() {
+        IslandState.modal = true
         IslandState.mode =
             IslandState.wallpaperSelectorMode
     }
 
     function openMediaControls() {
-        ignoreNextIslandTap()
-
-        IslandState.islandPinned = true
-
+        IslandState.modal = true
         IslandState.mode =
             IslandState.mediaControlsMode
     }
 
     function openApplicationLauncher() {
+        IslandState.modal = true
         IslandState.mode =
             IslandState.applicationLauncherMode
     }
@@ -65,6 +69,8 @@ QtObject {
     function openMediaFromLeftSection() {
         ignoreNextIslandTap()
 
+        IslandState.modal = false
+
         IslandState.returnToExpanded =
             IslandState.islandPinned
 
@@ -75,6 +81,8 @@ QtObject {
     }
 
     function openControlCenterFromRightSection() {
+        IslandState.modal = false
+
         IslandState.returnToExpanded =
             IslandState.islandPinned
 
@@ -124,6 +132,7 @@ QtObject {
         IslandState.ignoreNextIslandTap = false
         IslandState.returnToExpanded = false
         IslandState.islandPinned = false
+        IslandState.modal = false
         IslandState.mode =
             IslandState.defaultMode
     }

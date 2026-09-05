@@ -237,6 +237,8 @@ FocusScope {
 
                 WallpaperService.apply(selectedItem.path)
 
+                IslandController.reset()
+
                 event.accepted = true
             }
             break

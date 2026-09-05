@@ -185,6 +185,7 @@ FocusScope {
             ThemeService.apply(
                 ThemeService.themes.get(selectedIndex).themeId
             )
+            IslandController.reset()
 
             event.accepted = true
             break
