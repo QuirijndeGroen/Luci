@@ -45,6 +45,9 @@ Item {
             case IslandState.mediaControlsMode:
                 return mediaView
 
+            case IslandState.applicationLauncherMode:
+                return applicationsLauncherView
+
             default:
                 return defaultView
             }
@@ -89,5 +92,10 @@ Item {
     Component {
         id: mediaView
         MediaView { }
+    }
+
+    Component {
+        id: applicationsLauncherView
+        ApplicationsLauncherView { }
     }
 }

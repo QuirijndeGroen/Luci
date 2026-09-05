@@ -25,4 +25,8 @@ IpcHandler {
     function openThemeSelector() {
         IslandController.openThemeSelector()
     }
+
+    function openApplicationLauncher() {
+        IslandController.openApplicationLauncher()
+    }
 }

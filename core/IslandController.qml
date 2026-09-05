@@ -51,6 +51,11 @@ QtObject {
             IslandState.mediaControlsMode
     }
 
+    function openApplicationLauncher() {
+        IslandState.mode =
+            IslandState.applicationLauncherMode
+    }
+
     // =========================================================
     // CONTEXTUAL NAVIGATION
     // Open views from specific parts of the island while
