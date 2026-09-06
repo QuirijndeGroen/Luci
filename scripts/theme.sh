@@ -103,7 +103,7 @@ if [[ -f "$THEME_DIR/kitty.conf" ]]; then
         "$THEME_DIR/kitty.conf" \
         "$HOME/.config/kitty/kitty.conf"
 
-    echo "✓ kitty.conf"
+    echo "✓ kitty"
 fi
 
 # -------------------------
@@ -125,7 +125,19 @@ if [[ -f "$THEME_DIR/starship.toml" ]]; then
         "$THEME_DIR/starship.toml" \
         "$HOME/.config/starship.toml"
 
-    echo "✓ starship.toml"
+    echo "✓ starship"
+fi
+
+# -------------------------
+# Zen
+# -------------------------
+
+if [[ -f "$THEME_DIR/user.json" ]]; then
+    cp -f \
+        "$THEME_DIR/user.json" \
+        "$HOME/.config/zen/p6h4p02e.Default\ \(release\)/user.js"
+
+    echo "✓ zen"
 fi
 
 echo "$THEME" > "$HOME/.config/quickshell/.current_theme"
