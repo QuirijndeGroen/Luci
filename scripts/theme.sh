@@ -114,7 +114,7 @@ link_if_exists \
     "$THEME_DIR/HyprTheme.lua" \
     "$HOME/.config/quickshell/config/hypr/current-theme/theme.lua"
 
-echo
+echo "✓ hyprland"
 
 # -------------------------
 # Starship
@@ -132,10 +132,10 @@ fi
 # Zen
 # -------------------------
 
-if [[ -f "$THEME_DIR/user.json" ]]; then
+if [[ -f "$THEME_DIR/user.js" ]]; then
     cp -f \
-        "$THEME_DIR/user.json" \
-        "$HOME/.config/zen/p6h4p02e.Default\ \(release\)/user.js"
+        "$THEME_DIR/user.js" \
+        "$HOME/.config/zen/p6h4p02e.Default (release)/user.js"
 
     echo "✓ zen"
 fi
