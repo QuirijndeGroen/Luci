@@ -123,6 +123,7 @@ FocusScope {
 
                         ThemeService.apply(model.themeId)
 
+                        IslandController.reset()
                     }
                 }
             }

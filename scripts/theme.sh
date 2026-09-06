@@ -35,54 +35,67 @@ link_if_exists() {
 case "$THEME" in
     monochrome)
         WP="art11.png"
+        SpotifyTheme="ultrablack"
         ;;
 
     githublight)
         WP="Totoro.png"
+        SpotifyTheme="ultrablack"
         ;;
 
     gruvbox)
         WP="gruvbox_astro.jpg"
+        SpotifyTheme="bladerunner"
         ;;
 
     gruvboxlight)
         WP="anime-girl3.jpg"
+        SpotifyTheme="ultrablack"
         ;;
 
     dracula)
         WP="art13.jpeg"
+        SpotifyTheme="dracula"
         ;;
 
     everforest)
         WP="foggy_valley_2.png"
+        SpotifyTheme="futura"
         ;;
 
     catppuccin)
         WP="arch-black-4k.png"
+        SpotifyTheme="catppuccin"
         ;;
 
     catppuccinlatte)
         WP="7.jpg"
+        SpotifyTheme="ultrablack"
         ;;
 
     nord)
         WP="chainsaw-man.png"
+        SpotifyTheme="nord"
         ;;
 
     rosepine)
         WP="dark-fantasy.jpg"
+        SpotifyTheme="rosepine"
         ;;
 
     solarized)
         WP="sleeping.jpg"
+        SpotifyTheme="ultrablack"
         ;;
 
     tokyonight)
         WP="aesthetic-anime2.jpg"
+        SpotifyTheme="tokyonight"
         ;;
 
     *)
         WP="default.jpg"
+        SpotifyTheme="ultrablack"
         ;;
 esac
 
@@ -139,6 +152,15 @@ if [[ -f "$THEME_DIR/user.js" ]]; then
 
     echo "✓ zen"
 fi
+
+# -------------------------
+# Spotify
+# -------------------------
+
+spicetify config current_theme Sleek color_scheme $SpotifyTheme
+spicetify refresh
+
+echo "✓ spotify"
 
 echo "$THEME" > "$HOME/.config/quickshell/.current_theme"
 

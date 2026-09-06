@@ -114,6 +114,8 @@ FocusScope {
                         wallpaperView.currentIndex = index
 
                         WallpaperService.apply(model.path)
+
+                        IslandController.reset()
                     }
                 }
             }
@@ -167,7 +169,7 @@ FocusScope {
                     text: "Theme Wallpapers"
 
                     color: WallpaperService.themeOnly
-                        ? Theme.buttonText
+                        ? Theme.buttonBackground
                         : Theme.textPrimary
 
                     font.pixelSize: 13
@@ -213,7 +215,7 @@ FocusScope {
 
                     color: WallpaperService.themeOnly
                         ? Theme.textPrimary
-                        : Theme.buttonText
+                        : Theme.buttonBackground
 
                     font.pixelSize: 13
                     font.bold: true
