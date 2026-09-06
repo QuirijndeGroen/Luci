@@ -116,5 +116,17 @@ link_if_exists \
 
 echo
 
+# -------------------------
+# Starship
+# -------------------------
+
+if [[ -f "$THEME_DIR/starship.toml" ]]; then
+    cp -f \
+        "$THEME_DIR/starship.toml" \
+        "$HOME/.config/starship.toml"
+
+    echo "✓ starship.toml"
+fi
+
 echo "$THEME" > "$HOME/.config/quickshell/.current_theme"
 
