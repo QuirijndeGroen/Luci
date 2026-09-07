@@ -30,9 +30,20 @@ Singleton {
     readonly property int playbackPlaying: 1
     readonly property int playbackPaused: 2
 
+    property var filteredPlayers: {
+        const filtered = Mpris.players.values.filter(p => {
+            const dbusName = (p.dbusName || "").toLowerCase();
+            if (dbusName.includes("firefox")) {
+                return false;
+            }
+            return true;
+        });
+        return filtered;
+    }
+
     function updatePlayer() {
 
-        if (Mpris.players.values.length === 0) {
+        if (filteredPlayers.length === 0) {
 
             player = null
 
@@ -47,8 +58,8 @@ Singleton {
             return
         }
 
-        if (player !== Mpris.players.values[0])
-            player = Mpris.players.values[0]
+        if (player !== filteredPlayers[0])
+            player = filteredPlayers[0]
 
         title = player.trackTitle
         artist = player.trackArtist
