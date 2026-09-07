@@ -2,7 +2,7 @@
 ---- KEYBINDINGS ----
 ---------------------
 
-local programs = require(os.getenv("HOME") .. "/.config/quickshell/config/hypr/core/programs.lua")
+local programs = require(os.getenv("HOME") .. "/.config/quickshell/hypr/core/programs.lua")
 
 local mainMod = "SUPER"
 

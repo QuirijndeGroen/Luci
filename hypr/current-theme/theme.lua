@@ -1,0 +1,1 @@
+/home/quirijn/.config/quickshell/styles/themes/monochrome/HyprTheme.lua

@@ -2,7 +2,7 @@
 ---- LOOK AND FEEL ----
 -----------------------
 
-local theme = require(os.getenv("HOME") .. "/.config/quickshell/config/hypr/current-theme/theme")
+local theme = require(os.getenv("HOME") .. "/.config/quickshell/hypr/current-theme/theme")
 
 hl.config({
     general = {
